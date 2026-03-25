@@ -1,0 +1,64 @@
+<h2>Students</h2>
+
+<div class="link-buttons">
+	<%= link_to 'New Student', new_student_path, class: 'link-button' %>
+	<%= link_to 'Bulk Maintenance', bulk_maintenance_students_path, class: 'link-button' %>
+	<%= link_to 'Course of Study', school_programs_path, class: 'link-button' %>
+	<%= link_to 'Degree', study_levels_path, class: 'link-button' %>
+	<%= link_to 'Khmer Calendar', khmer_calendars_path, class: 'link-button' %>
+</div>
+
+<div class="search-bar search-bar-student-index">
+	<%= form_with url: "/students/search", id: "js-search-form", method: :get do |f| %>
+    <%= f.label :year_started_at, "Start Year" %>
+    <%= f.date_select :year_started_at, selected: @search_condition_year_started_at, discard_month: true, discard_day: true %>
+    <%= f.label :school_program_id, "Course of Study" %>
+    <%= f.collection_select :school_program_id, @school_programs, :id, :name, { include_blank: '', selected: @search_condition_school_program } %>
+    <%= f.label :study_level_id, "Degree" %>
+    <%= f.collection_select :study_level_id, @study_levels, :id, :name, { include_blank: '', selected: @search_condition_study_level } %>
+    <br />
+    <%= f.label :name_alphabet, "Name(Alphabet)" %>
+    <%= f.text_field :name_alphabet, value: @search_condition_name_alphabet %>
+    <%= f.label :created_at, "Create Date" %>
+    <%= f.date_field :created_at, value: @search_condition_created_at, include_blank: true %>
+    <%= f.submit "Search", class: 'button', style: 'margin-left: 0.5rem' %>
+	<% end %>
+</div>
+
+<% unless @students.blank? %>
+<div class="students-table">
+	<table>
+		<thead>
+			<tr>
+				<th><input id="thead-checkbox" type="checkbox"></th>
+				<th>ID</th>
+				<th>Student ID</th>
+				<th>Name(Khmer Character)</th>
+				<th>Name(Alphabet)</th>
+				<th>Course of study</th>
+				<th>Date of Birth</th>
+				<th colspan="3"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @students.each do |student| %>
+				<tr>
+					<td><input class="row-checkbox" type="checkbox" data-row="<%= student.id %>"></td>
+					<td><%= student.id %></td>
+					<td><%= student.student_school_id %></td>
+					<td><%= student.name_khmer %></td>
+					<td><%= student.name_alphabet %></td>
+					<td><%= student.school_program.name %></td>
+					<td><%= student.birthdate %></td>
+					<td><%= link_to 'Show', student, class: 'link-button' %></td>
+					<td><%= link_to 'Edit', edit_student_path(student), class: 'link-button' %></td>
+					<td><%= button_to 'Delete', student, method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: 'button'%></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
+<%= link_to "Generate Students Cards", download_pdf_students_path, class: 'link-button', id: 'js-link-to-generate-pdf' %>
+<%= link_to "View Students Cards", test_id_card_students_path, class: 'link-button', id: 'js-link-to-view-cards' %>
+<% end %>

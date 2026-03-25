@@ -1,0 +1,36 @@
+.detail {
+  margin:0 auto;
+  width: 80%;
+}
+
+.detail-box {
+  background-color: #FFFDEB;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #F7EFC0;
+}
+
+.detail-box h2 {
+  color: #666;
+  margin-bottom: 1rem;
+  display: table;
+}
+
+.detail-row {
+  display: table-row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.detail-label {
+  display: table-cell;
+  width: 300px;
+  font-weight: bold;
+  color: #555;
+}
+
+.detail-value {
+  padding-left: 8px;
+  display: table-cell;
+  color: #444;
+}

@@ -1,0 +1,60 @@
+table {
+  border-collapse: collapse;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+}
+
+table th, table td {
+  border: 1px solid #eee;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+table th {
+  background-color: #FFF1A8;
+  color: #333;
+}
+
+table tr:nth-child(even) {
+  background-color: #FFFDE0;
+}
+
+.search-bar {
+  background-color: #FFF1A8;
+  display: flex;
+  border-radius: 8px;
+  margin: 0.5rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  gap: 10px;
+}
+
+.search-bar-student-index {
+  width: 60%;
+}
+
+.search-bar-bulk-students {
+  width: 70%;
+}
+
+.search-bar input, .search-bar select {
+  flex: 1;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: none;
+  border-radius: 8px;
+}
+
+.search-bar label {
+  margin-bottom: 0.5rem;
+  margin-left: 0.5rem;
+  margin-right: 0.2rem;
+}
+
+.search-bar input[type="submit"] {
+  padding: 0.8rem 1.2rem;
+}
+
+.search-bar submit {
+  margin-left: 1rem;
+}
